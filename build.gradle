@@ -40,7 +40,7 @@ task(updateSubs) << {
   } else {
     versionToBeUpdated=prereleaseVersion
   }
-  FileTree tree = fileTree(project.projectDir)
+  FileTree tree = fileTree(project.projectDir).include("**/Dockerfile")
   tree.each {File file ->
     if (file.text.contains(versionToBeUpdated)) {
       def updated = file.text.replaceAll(versionToBeUpdated,project.version)
