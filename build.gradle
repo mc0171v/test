@@ -45,7 +45,7 @@ task(updateSubs) << {
     updatedCompose = dockerCompose.text.replaceAll(':latest',":$project.version")
   }
   dockerCompose.write(updatedCompose)
-  FileTree tree = fileTree(project.projectDir).include("**/Dockerfile")
+  FileTree tree = fileTree(project.projectDir).includes(["**/Dockerfile","**/gradle.properties**"])
   tree.each {File file ->
     if (file.text.contains(versionToBeUpdated)) {
       def updated = file.text.replaceAll(versionToBeUpdated,project.version)

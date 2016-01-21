@@ -2,7 +2,6 @@ apply plugin: 'spring-boot'
 
 jar {
     baseName = 'bell-sam-api-gateway'
-    version = '0.0.3-SNAPSHOT'
 }
 
 dependencies {

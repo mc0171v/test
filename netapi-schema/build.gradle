@@ -3,7 +3,6 @@ apply plugin: 'java'
 
 jar {
     baseName = 'bell-sam-netapi-schema'
-    version = '0.0.3-SNAPSHOT'
 }
 
 
