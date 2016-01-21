@@ -35,11 +35,16 @@ apply plugin: 'net.researchgate.release'
 
 task(updateSubs) << {
   def versionToBeUpdated
+  def updatedCompose
+  File dockerCompose = file('docker-compose.yml')
   if (project.version.contains('SNAPSHOT')) {
     versionToBeUpdated=tagVersion
+    updatedCompose = dockerCompose.text.replaceAll(":$tagVersion",":latest")
   } else {
     versionToBeUpdated=prereleaseVersion
+    updatedCompose = dockerCompose.text.replaceAll(':latest',":$project.version")
   }
+  dockerCompose.write(updatedCompose)
   FileTree tree = fileTree(project.projectDir).include("**/Dockerfile")
   tree.each {File file ->
     if (file.text.contains(versionToBeUpdated)) {
