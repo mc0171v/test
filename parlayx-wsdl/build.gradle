@@ -1,0 +1,46 @@
+buildscript{
+    repositories{
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "no.nils:wsdl2java:${wsdl2javaPluginVersion}"
+    }
+}
+
+apply plugin :'no.nils.wsdl2java'
+
+jar {
+    baseName = 'bell-sam-parlayx-wsdl'
+    version = '0.0.2-SNAPSHOT'
+}
+
+
+repositories{
+    mavenCentral()
+}
+
+dependencies(){
+    testCompile 'junit:junit:+'
+}
+
+wsdl2java{
+    wsdlsToGenerate = [
+            ['-xjc',
+             '-p','urn:local.v1_0.subscriber.thirdparty.wsdl.bell.ca=generated.ca.bell.wsdl.thirdparty.subscriber.v1_0.local',
+             '-p','urn:service.v1_0.subscriber.thirdparty.wsdl.bell.ca=generated.ca.bell.wsdl.thirdparty.subscriber.v1_0.service',
+             '-p','urn:faults.v1_0.subscriber.thirdparty.wsdl.bell.ca=generated.ca.bell.wsdl.thirdparty.subscriber.v1_0.faults',
+             '-p','urn:interface.v1_0.subscriber.thirdparty.wsdl.bell.ca=generated.ca.bell.wsdl.thirdparty.subscriber.v1_0._interface',
+             '-p','urn:v1_0.subscriber.thirdparty.wsdl.bell.ca=generated.ca.bell.wsdl.thirdparty.subscriber.v1_0',
+             "$projectDir/src/main/resources/wsdl/subx/bell_subscriber_service_1_0.wsdl"]
+
+    ]
+    generatedWsdlDir = file("$projectDir/generatedsources")
+    wsdlDir = file("$projectDir/src/main/resources/wsdl")
+    cxfVersion = cxfStackVersion
+}
+
+pmdMain.enabled = false
+checkstyleMain.enabled = false
+findbugsMain.enabled = false
+sonarqube.skipProject = true

@@ -1,0 +1,17 @@
+
+description = 'spring-boot-common'
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+
+    compile("org.springframework.boot:spring-boot-starter-remote-shell")
+
+    compile("org.springframework.boot:spring-boot-starter-aop")
+    compile("org.springframework.retry:spring-retry")
+}
+

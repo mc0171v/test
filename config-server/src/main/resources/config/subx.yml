@@ -1,0 +1,8 @@
+server:
+  port: 8092
+shell:
+  ssh:
+    port: 2030
+security:
+  basic:
+    enabled: false  

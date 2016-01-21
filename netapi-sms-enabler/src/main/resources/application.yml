@@ -1,0 +1,11 @@
+server:
+  port: 8097
+shell:
+  ssh:
+    port: 2040
+security:
+  basic:
+    enabled: false
+enabler:
+  uri: 
+    basePath: rooturl/example

@@ -1,0 +1,17 @@
+jar {
+    baseName = 'bell-sam-parlayx-adapters'
+    version = '0.0.2-SNAPSHOT'
+}
+
+dependencies {
+    compile("org.springframework.cloud:spring-cloud-starter-hystrix")
+
+    compile project(':parlayx-wsdl')
+    compile project(':api-model')
+    compile libraries.cxf
+
+    testCompile libraries.unitTest
+
+    compile("org.springframework:spring-web")
+    compile("com.fasterxml.jackson.core:jackson-databind")
+}

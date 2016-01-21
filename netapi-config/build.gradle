@@ -1,0 +1,22 @@
+jar {
+    baseName = 'bell-sam-netapi-config'
+    version = '0.0.2-SNAPSHOT'
+}
+
+dependencies {
+
+    compile libraries.slf4j
+
+    compile("org.springframework:spring-webmvc")
+
+    compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml')
+
+    testCompile libraries.unitTest
+
+    testCompile('com.jayway.jsonpath:json-path')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.springframework.boot:spring-boot-starter-web')  // For TestConfiguration class.
+
+}
+

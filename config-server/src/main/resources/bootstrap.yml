@@ -1,0 +1,15 @@
+---
+spring:
+  application:
+    name: config-server
+#  profiles:
+#    active: native
+
+eureka:
+  instance:
+    nonSecurePort: ${server.port:8888}
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.username:vennetics}:${eureka.password:M5NLqZD8ivv0}@${eureka.host:localhost}:${eureka.port:8761}/eureka/
+       

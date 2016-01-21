@@ -1,0 +1,142 @@
+discoveryservice:
+  image: "vennetics/bell-sam-discovery-service"
+  hostname: discoveryservice
+  ports:
+   - "8761:8761"
+   - "2010:2010"
+
+configserver:
+  image: "vennetics/bell-sam-config-server"
+  hostname: configserver
+  links:
+    - discoveryservice
+  environment:
+     EUREKA_HOST: discoveryservice
+     EUREKA_PORT: 8761
+  ports:
+    - "8888:8888"
+    - "2020:2020"
+
+apigateway:
+  image: "vennetics/bell-sam-api-gateway"
+  hostname: apigateway
+  restart: always
+  links:
+    - discoveryservice
+    - configserver
+    - subx
+    - helloworld
+    - netapismsenabler
+  environment:
+     EUREKA_HOST: discoveryservice
+     EUREKA_PORT: 8761
+     CONFIG_HOST: configserver
+     CONFIG_PORT: 8888
+  ports:
+    - "8087:8087"
+    - "2050:2050"
+
+hystrixdashboard:
+  image: "vennetics/bell-sam-hystrix-dashboard"
+  hostname: hystrixdashboard
+  restart: always
+  links:
+    - discoveryservice
+    - configserver
+    - apigateway
+    - turbine
+  environment:
+     EUREKA_HOST: discoveryservice
+     EUREKA_PORT: 8761
+     CONFIG_HOST: configserver
+     CONFIG_PORT: 8888
+  ports:
+    - "8091:8091"
+    - "2060:2060"
+
+turbine:
+  image: "vennetics/bell-sam-turbine"
+  hostname: turbine
+  restart: always
+  links:
+    - discoveryservice
+    - configserver
+    - apigateway
+  environment:
+     EUREKA_HOST: discoveryservice
+     EUREKA_PORT: 8761
+     CONFIG_HOST: configserver
+     CONFIG_PORT: 8888
+  ports:
+    - "8089:8089"
+    - "2070:2070"
+
+subx:
+  image: "vennetics/bell-sam-subx"
+  hostname: subx
+  restart: always
+  links:
+    - discoveryservice
+    - configserver
+  environment:
+     EUREKA_HOST: discoveryservice
+     EUREKA_PORT: 8761
+     CONFIG_HOST: configserver
+     CONFIG_PORT: 8888
+  ports:
+    - "8092:8092"
+    - "2030:2030"
+
+netapismsenabler:
+  image: "vennetics/bell-sam-netapi-sms-enabler"
+  hostname: netapismsenabler
+  restart: always
+  links:
+    - discoveryservice
+    - configserver
+  environment:
+     EUREKA_HOST: discoveryservice
+     EUREKA_PORT: 8761
+     CONFIG_HOST: configserver
+     CONFIG_PORT: 8888
+  ports:
+    - "8097:8097"
+    - "2040:2040"
+
+helloworld:
+  image: "vennetics/bell-sam-helloworld"
+  hostname: helloworld
+  restart: always
+  links:
+    - discoveryservice
+    - configserver
+  environment:
+    EUREKA_HOST: discoveryservice
+    EUREKA_PORT: 8761
+    CONFIG_HOST: configserver
+    CONFIG_PORT: 8888
+  ports:
+      - "8080:8080"
+      - "2080:2080"
+
+springbootadmin:
+  image: "vennetics/bell-sam-spring-boot-admin"
+  hostname: springbootadmin
+  restart: always
+  links:
+    - discoveryservice
+    - configserver
+    - apigateway
+    - hystrixdashboard
+    - turbine
+    - subx
+    - helloworld
+
+  environment:
+     EUREKA_HOST: discoveryservice
+     EUREKA_PORT: 8761
+     CONFIG_HOST: configserver
+     CONFIG_PORT: 8888
+  ports:
+    - "8094:8094"
+    - "2031:2031"

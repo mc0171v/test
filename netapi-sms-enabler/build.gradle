@@ -1,0 +1,21 @@
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'bell-sam-netapi-sms-enabler'
+    version = '0.0.2-SNAPSHOT'
+}
+
+dependencies {
+    compile project(':netapi-schema')
+    compile project(':netapi-config')
+    runtime project(':spring-boot-common')
+    compile('org.springframework.cloud:spring-cloud-config-client')
+    compile('org.springframework.boot:spring-boot-devtools')
+    compile('org.springframework.cloud:spring-cloud-starter-eureka')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('com.netflix.rxjava:rxjava-core')
+    compile('com.netflix.hystrix:hystrix-core')
+    testCompile('com.jayway.jsonpath:json-path')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+

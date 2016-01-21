@@ -1,0 +1,47 @@
+plugins {
+    id "org.asciidoctor.convert" version "1.5.3"
+}
+
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'bell-sam-subx'
+    version = '0.0.2-SNAPSHOT'
+}
+
+ext {
+    snippetsDir = file('build/generated-snippets')
+    springRestdocsVersion = '1.0.1.RELEASE'
+}
+
+test {
+    outputs.dir snippetsDir
+}
+
+asciidoctor {
+    attributes 'snippets': snippetsDir
+    inputs.dir snippetsDir
+    dependsOn test
+}
+
+dependencies {
+    compile project(':api-model')
+    runtime project(':spring-boot-common')
+    compile('org.springframework.cloud:spring-cloud-config-client')
+    compile('org.springframework.cloud:spring-cloud-starter-eureka')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('com.netflix.rxjava:rxjava-core');
+    compile('com.netflix.hystrix:hystrix-core');
+    testCompile('com.jayway.jsonpath:json-path')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile "org.springframework.restdocs:spring-restdocs-mockmvc:$springRestdocsVersion"
+}
+
+
+
+//jar {
+//    dependsOn asciidoctor
+//    from ("${asciidoctor.outputDir}/html5") {
+//        into 'static/docs'
+//    }
+//}

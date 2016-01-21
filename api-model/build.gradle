@@ -1,0 +1,10 @@
+jar {
+    baseName = 'bell-sam-api-model'
+    version = '0.0.2-SNAPSHOT'
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('com.netflix.rxjava:rxjava-core');
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
