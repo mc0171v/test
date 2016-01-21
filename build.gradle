@@ -64,7 +64,7 @@ beforeReleaseBuild.dependsOn updateSubs
 commitNewVersion.dependsOn updateSubs
 
 release {
-  tagTemplate = '$name-$version'
+  tagTemplate = '$version'
   failOnSnapshotDependencies = false
 }
 
