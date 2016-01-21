@@ -1,6 +1,6 @@
 FROM java:8
 VOLUME /tmp
-ADD bell-sam-config-server-0.0.9.jar app.jar
+ADD bell-sam-config-server-0.0.10-SNAPSHOT.jar app.jar
 RUN bash -c 'touch /app.jar'
 RUN mkdir -p /root/.ssh
 RUN chmod 700 /root/.ssh
