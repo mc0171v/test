@@ -39,10 +39,10 @@ task(updateSubs) << {
   File dockerCompose = file('docker-compose.yml')
   if (project.version.contains('SNAPSHOT')) {
     versionToBeUpdated=tagVersion
-    updatedCompose = dockerCompose.text.replaceAll(":$tagVersion",":latest")
+    updatedCompose = dockerCompose.text.replaceAll(/(image:[^:]*)(:$tagVersion)/,"\$1:latest")
   } else {
     versionToBeUpdated=prereleaseVersion
-    updatedCompose = dockerCompose.text.replaceAll(':latest',":$project.version")
+    updatedCompose = dockerCompose.text.replaceAll(/(image:[^:]*)(:latest/),"\$1:$project.version")
   }
   dockerCompose.write(updatedCompose)
   FileTree tree = fileTree(dir: project.projectDir, includes: ["**/Dockerfile","**/gradle.properties**"])

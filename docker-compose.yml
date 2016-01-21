@@ -116,7 +116,7 @@ helloworld:
     CONFIG_HOST: configserver
     CONFIG_PORT: 8888
   ports:
-      - "80.0.8-SNAPSHOT080"
+      - "8080:8080"
       - "2080:2080"
 
 springbootadmin:
