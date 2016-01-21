@@ -2,7 +2,7 @@ apply plugin: 'spring-boot'
 
 jar {
     baseName = 'bell-sam-netapi-sms-enabler'
-    version = '0.0.2-SNAPSHOT'
+    version = '0.0.2'
 }
 
 dependencies {

@@ -2,7 +2,7 @@ apply plugin: 'spring-boot'
 
 jar {
     baseName = 'bell-sam-turbine'
-    version = '0.0.2-SNAPSHOT'
+    version = '0.0.2'
 }
 
 dependencies {

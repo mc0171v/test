@@ -6,7 +6,7 @@ apply plugin: 'spring-boot'
 
 jar {
     baseName = 'bell-sam-subx'
-    version = '0.0.2-SNAPSHOT'
+    version = '0.0.2'
 }
 
 ext {
