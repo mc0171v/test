@@ -2,7 +2,7 @@ apply plugin: 'spring-boot'
 
 jar {
     baseName = 'bell-sam-helloworld'
-    version = '0.0.2'
+    version = '0.0.3-SNAPSHOT'
 }
 
 dependencies {

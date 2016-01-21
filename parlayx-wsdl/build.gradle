@@ -12,7 +12,7 @@ apply plugin :'no.nils.wsdl2java'
 
 jar {
     baseName = 'bell-sam-parlayx-wsdl'
-    version = '0.0.2'
+    version = '0.0.3-SNAPSHOT'
 }
 
 
