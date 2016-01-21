@@ -1,5 +1,5 @@
 FROM java:8
 VOLUME /tmp
-ADD bell-sam-hystrix-dashboard-0.0.6.jar app.jar
+ADD bell-sam-hystrix-dashboard-0.0.7-SNAPSHOT.jar app.jar
 RUN bash -c 'touch /app.jar'
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
