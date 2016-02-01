@@ -34,7 +34,7 @@ public class SmsService implements ISmsService, InitializingBean {
     }
 
     @Override
-    //@SuppressWarnings({"PMD.SignatureDeclareThrowsException", "squid:S00112"})
+    @SuppressWarnings({"PMD.SignatureDeclareThrowsException", "squid:S00112"})
     public void afterPropertiesSet() throws Exception {
         restTemplate = templateFactory.netapiRestTemplate();
     }
