@@ -128,6 +128,8 @@ allprojects {
         maven { url "https://repo.spring.io/repo" }
     }
 
+    group = 'com.vennetics.bell.sam'
+
     checkstyle {
         configFile = file("$rootProject.projectDir/codequality/vennetics-checkstle-config.xml")
         reportsDir = file("$project.buildDir/checkstyle")
